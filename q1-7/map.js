@@ -2,28 +2,28 @@ var Map = function() {
 };
 Map.prototype = {
 	"map": [
-	[1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,5,1,1,1,1,1,1],
+		[1,1,1,0,0,3,4,2,1,1,1,1],
+		[1,1,1,0,2,4,3,0,1,1,1,1],
+		[1,1,1,0,0,2,3,0,1,1,1,1],
+		[1,1,1,0,4,0,0,0,1,1,1,1],
 		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,5,0,0,0,5,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,1,5,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
 		"x": 5,
-		"y": 5,
+		"y": 8,
 		"direction": 0,
 		"life": 65534,
 	},
-	"hint": "4 つのうち、2 つのゴールへ行こう",
+	"hint": "緑のマスには乗らないようにしよう",
 	"state": 0,
-	"goals": 2,
+	"goals": 1,
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
@@ -104,10 +104,15 @@ Map.prototype = {
 /**
  * コード実行前の処理
  */
-Map.prototype.beforeStart = function() {
+Map.prototype.beforeStart = function(pattern) {
+	// if pettern is <empty string> selected "どれか"
 };
 /**
  * ターンごとに発生する処理
  */
 Map.prototype.afterMoved = function(t, pos) {
+	// t is turns value, pos is robot info { "x": num, "y": num, "direction": num }
+	if (Map.prototype.map[pos.y][pos.x] == 4) {
+		Map.prototype.map[4][5] = 1;
+	}
 };

@@ -4,26 +4,26 @@ Map.prototype = {
 	"map": [
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,1,1,0,0,0,5,0,1,1,1,1],
+		[1,1,1,0,1,0,1,0,1,1,1,1],
+		[1,1,1,5,0,0,0,0,5,1,1,1],
+		[1,1,1,1,0,1,0,1,1,1,1,1],
+		[1,1,1,1,0,0,5,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,5,0,0,0,5,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
-		[1,1,1,1,1,0,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
-		"x": 5,
-		"y": 7,
-		"direction": 0,
+		"x": 3,
+		"y": 2,
+		"direction": 2,
 		"life": 65534,
 	},
-	"hint": "2 つのゴールへ行くようにしよう",
+	"hint": "一筆書きで 4 つのゴールへ行こう",
 	"state": 0,
-	"goals": 2,
+	"goals": 4,
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
@@ -110,4 +110,20 @@ Map.prototype.beforeStart = function() {
  * ターンごとに発生する処理
  */
 Map.prototype.afterMoved = function(t, pos) {
+	if (Map.prototype.map[pos.y][pos.x] == 5) {
+		switch(pos.direction) {
+			case 0:
+				Map.prototype.map[pos.y + 1][pos.x] = 1;
+				break;
+			case 1:
+				Map.prototype.map[pos.y][pos.x - 1] = 1;
+				break;
+			case 2:
+				Map.prototype.map[pos.y - 1][pos.x] = 1;
+				break;
+			case 3:
+				Map.prototype.map[pos.y][pos.x + 1] = 1;
+				break;
+		}
+	}
 };

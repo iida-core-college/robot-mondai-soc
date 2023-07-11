@@ -3,33 +3,33 @@ var Map = function() {
 Map.prototype = {
 	"map": [
 		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,0,0,0,5,1,1,1,1,1],
-		[1,1,1,0,1,1,0,1,1,1,1,1],
-		[1,1,1,0,0,0,5,1,1,1,1,1],
-		[1,1,1,0,1,1,0,1,1,1,1,1],
-		[1,1,1,5,0,0,0,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,1,1,0,0,0,0,5,0,1,1,1],
+		[1,1,1,0,0,0,0,0,0,1,1,1],
+		[1,1,1,5,0,0,0,0,0,1,1,1],
+		[1,1,1,0,0,0,0,0,5,1,1,1],
+		[1,1,1,5,0,0,0,0,0,1,1,1],
+		[1,1,1,0,0,0,0,5,0,1,1,1],
+		[1,1,1,0,0,0,0,0,0,1,1,1],
+		[1,1,1,0,5,0,0,0,0,1,1,1],
+		[1,1,1,0,0,0,0,0,0,1,1,1],
+		[1,1,1,0,0,0,5,0,0,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
-		"x": 4,
-		"y": 4,
-		"direction": 1,
+		"x": 5,
+		"y": 1,
+		"direction": 2,
 		"life": 65534,
 	},
-	"hint": "一筆書きで 3 つのゴールへ行こう",
+	"hint": "時間がたつとかべがふえていくよ。間に合うかな？",
 	"state": 0,
-	"goals": 3,
+	"goals": 1,
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
 		"question": "Q1-8",
 		"previous": "q1-7",
-		"next": "q1-9"
+		"next": "q2-1"
 	},
 	"robot": {
 		"type": 0,
@@ -104,26 +104,49 @@ Map.prototype = {
 /**
  * コード実行前の処理
  */
-Map.prototype.beforeStart = function() {
+Map.prototype.beforeStart = function(pattern) {
+	// if pettern is <empty string> selected "どれか"
 };
 /**
  * ターンごとに発生する処理
  */
 Map.prototype.afterMoved = function(t, pos) {
-	if (Map.prototype.map[pos.y][pos.x] == 5) {
-		switch(pos.direction) {
-			case 0:
-				Map.prototype.map[pos.y + 1][pos.x] = 1;
-				break;
-			case 1:
-				Map.prototype.map[pos.y][pos.x - 1] = 1;
-				break;
-			case 2:
-				Map.prototype.map[pos.y - 1][pos.x] = 1;
-				break;
-			case 3:
-				Map.prototype.map[pos.y][pos.x + 1] = 1;
-				break;
+	var row = -1;
+	switch(t) {
+		case 1:
+			row = 1;
+			break;
+		case 2:
+			row = 10;
+			break;
+		case 3:
+			row = 2;
+			break;
+		case 4:
+			row = 9;
+			break;
+		case 5:
+			row = 3;
+			break;
+		case 6:
+			row = 8;
+			break;
+		case 7:
+			row = 4;
+			break;
+		case 8:
+			row = 7;
+			break;
+		case 9:
+			row = 5;
+			break;
+		case 10:
+			row = 6;
+			break;
+	}
+	if (row > 0) {
+		for (var i = 3; i <= 8; i++) {
+			Map.prototype.map[row][i] = 1;
 		}
 	}
 };

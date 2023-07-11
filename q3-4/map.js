@@ -3,33 +3,33 @@ var Map = function() {
 Map.prototype = {
 	"map": [
 		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,0,0,1,1,1,1,1,1,1,1,1],
-		[1,1,0,0,1,1,1,1,1,1,1,1],
-		[1,1,1,0,0,1,1,1,1,1,1,1],
-		[1,1,1,1,0,0,1,1,1,1,1,1],
 		[1,1,1,1,1,0,0,1,1,1,1,1],
-		[1,1,1,1,1,1,0,0,1,1,1,1],
-		[1,1,1,1,1,1,1,0,0,1,1,1],
-		[1,1,1,1,1,1,1,1,0,0,1,1],
-		[1,1,1,1,1,1,1,1,1,0,0,1],
-		[1,1,1,1,1,1,1,1,1,1,5,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,0,1,1,1,1,1],
+		[1,1,1,1,1,0,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
-		"x": 1,
-		"y": 1,
-		"direction": 1,
+		"x": 5,
+		"y": 10,
+		"direction": 0,
 		"life": 65534,
 	},
-	"hint": "1だんずつ下へ行く命令をくり返してみよう",
+	"hint": "赤いマスの先のあたりにゴールがあるよ",
 	"state": 0,
 	"goals": 1,
-	"patterns": 1,
+	"patterns": 3,
 	"blocksLimit": 0,
 	"links": {
 		"question": "Q3-4",
 		"previous": "q3-3",
-		"next": "q3-5"
+		"next": ""
 	},
 	"robot": {
 		"type": 2,
@@ -40,13 +40,13 @@ Map.prototype = {
 			"nop": true
 		},
 		"Standard": {
-			"floor_color_is": true,
+			"floor_color_is": false,
 			"robot_direction_is": true,
 			"movable_is": true
 		},
 		"Advanced": {
-			"times_loop": true,
-			"floor_color_loop": false,
+			"times_loop": false,
+			"floor_color_loop": true,
 			"movable_loop": false
 		},
 		"Expert": {
@@ -94,7 +94,7 @@ Map.prototype = {
 		[ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ],
 		[ -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 ]
 	],
-	"hintBlocks": '<xml xmlns="https://developers.google.com/blockly/xml"><block type="forward" x="10" y="10"><next><block type="turn_right"><next><block type="forward"><next><block type="turn_left"></block></next></block></next></block></next></block></xml>',
+	"hintBlocks": '<xml xmlns="https://developers.google.com/blockly/xml"><block type="floor_color_loop" x="10" y="10"><statement name="equals"><block type="forward"></block></statement></block></xml>',
 	"map2": [],
 	"chars2": [],
 	
@@ -104,7 +104,39 @@ Map.prototype = {
 /**
  * コード実行前の処理
  */
-Map.prototype.beforeStart = function() {
+Map.prototype.beforeStart = function(pattern) {
+	if (pattern != "") {
+		switch(parseInt(pattern)) {
+			case 0:
+				var v = 2;
+				break;
+			case 1:
+				var v = 5;
+				break;
+			case 2:
+				var v;
+				do {
+					v = parseInt(Math.random() * 8);
+				}while(v == Map.prototype.state);
+				break;
+		}
+	}
+	else {
+		var v;
+		do {
+			v = parseInt(Math.random() * 8);
+		}while(v == Map.prototype.state);
+	}
+	Map.prototype.state = v;
+	
+	v = v + 2;
+	
+	for (var i = 10; i >= v; i--) {
+		Map.prototype.map[i][5] = 2;
+	}
+	Map.prototype.map[v - 1][6] = 5;
+	Map.prototype.map[v - 2][6] = 1;
+	Map.prototype.map[v][6] = 1;
 };
 /**
  * ターンごとに発生する処理
