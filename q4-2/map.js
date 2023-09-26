@@ -28,8 +28,8 @@ Map.prototype = {
 	"blocksLimit": 0,
 	"links": {
 		"question": "太陽",
-		"previous": "q1-8",
-		"next": "q2-2"
+		"previous": "q4-1",
+		"next": "q4-3"
 	},
 	"robot": {
 		"type": 0,
