@@ -27,9 +27,9 @@ Map.prototype = {
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
-		"question": "Q1-1",
-		"previous": "",
-		"next": "q1-2"
+		"question": "Q4-7",
+		"previous": "q4-6",
+		"next": "q4-8"
 	},
 	"robot": {
 		"type": 2,
