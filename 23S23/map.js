@@ -16,8 +16,8 @@ Map.prototype = {
 		[1,1,1,1,1,1,1,1,1,1,1,1]
 	],
 	"start": {
-		"x": 5,
-		"y": 5,
+		"x": 2,
+		"y": 10,
 		"direction": 0,
 		"life": 10000,
 	},
@@ -27,7 +27,7 @@ Map.prototype = {
 	"patterns": 2,
 	"blocksLimit": 0,
 	"links": {
-		"question": "Q2-1",
+		"question": "長いんです",
 		"previous": "q1-8",
 		"next": "q2-2"
 	},
