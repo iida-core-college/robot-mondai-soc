@@ -30,8 +30,8 @@ Map.prototype = {
 	"blocksLimit": 20,
 	"links": {
 		"question": "Ｍのどうこく",
-		"previous": "",
-		"next": "q1-2"
+		"previous": "q4-4",
+		"next": "q4-6"
 	},
 	"robot": {
 		"type": 2,
