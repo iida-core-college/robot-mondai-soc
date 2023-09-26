@@ -27,7 +27,7 @@ Map.prototype = {
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
-		"question": "Q1-1",
+		"question": "四角",
 		"previous": "",
 		"next": "q1-2"
 	},
