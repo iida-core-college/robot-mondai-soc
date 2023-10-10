@@ -27,7 +27,7 @@ Map.prototype = {
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
-		"question": "Q4-7",
+		"question": "ぜんぶの色のマス",
 		"previous": "q4-6",
 		"next": "q4-8"
 	},
