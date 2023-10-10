@@ -5,10 +5,10 @@ Map.prototype = {
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,1,1,3,0,0,4,0,1,1,1,1],
-		[1,1,1,1,2,0,0,0,1,1,1,1],
+		[1,1,1,0,0,0,1,2,1,1,1,1],
+		[1,1,1,0,0,0,1,0,1,1,1,1],
+		[1,1,1,0,0,4,1,0,1,1,1,1],
 		[1,1,1,0,1,0,0,0,1,1,1,1],
-		[1,1,1,0,0,0,0,0,0,0,1,1],
 		[1,1,1,0,0,0,0,0,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
 		[1,1,1,1,1,1,1,1,1,1,1,1],
@@ -17,19 +17,19 @@ Map.prototype = {
 	],
 	"start": {
 		"x": 5,
-		"y": 7,
+		"y": 5,
 		"direction": 0,
 		"life": 65534,
 	},
-	"hint": "それぞれの色のマスを通ってゴールしよう！",
+	"hint": "すべてのマスを通って赤いマスをめざそう！",
 	"state": 0,
 	"goals": 1,
 	"patterns": 1,
 	"blocksLimit": 0,
 	"links": {
 		"question": "Q1-1",
-		"previous": "",
-		"next": "q1-2"
+		"previous": "q4-5",
+		"next": "q4-7"
 	},
 	"robot": {
 		"type": 2,
@@ -37,7 +37,7 @@ Map.prototype = {
 			"forward": true,
 			"turn_right": true,
 			"turn_left": true,
-			"nop": true
+			"nop": false
 		},
 		"Standard": {
 			"floor_color_is": false,
@@ -105,24 +105,39 @@ Map.prototype = {
  * コード実行前の処理
  */
 Map.prototype.beforeStart = function() {
-	Map.prototype.state = 0;
 };
 /**
  * ターンごとに発生する処理
  */
 Map.prototype.afterMoved = function(t, pos) {
+	if (Map.prototype.map[pos.y][pos.x] == 0) {
+		switch(pos.direction) {
+			case 0:
+				Map.prototype.map[pos.y + 1][pos.x] = 1;
+				break;
+			case 1:
+				Map.prototype.map[pos.y][pos.x - 1] = 1;
+				break;
+			case 2:
+				Map.prototype.map[pos.y - 1][pos.x] = 1;
+				break;
+			case 3:
+				Map.prototype.map[pos.y][pos.x + 1] = 1;
+				break;
+		}
+	}
 
 	// afterMoved
 
-//f (pos.y == 4 && pos.x == 4) {
-	//Map.prototype.map[6][9] = 5;
-//}(
-	if ((Map.prototype.map[pos.y][pos.x] != 0) && (Map.prototype.map[pos.y][pos.x] != 5)) {
-		Map.prototype.state++;
-		Map.prototype.map[pos.y][pos.x] = 0;
-	}
-		if (Map.prototype.state == 3){
-		Map.prototype.map[6][9] = 5;
+	var count = 0;
+	for (var i = 0; i < 12; i++) {
+		for (var j = 0; j < 12; j++) {
+			if (Map.prototype.map[i][j] == 0) {
+				count++;
+			}
 		}
+	}
+	if (count == 1) {
+		Map.prototype.map[3][7] = 5;
+	}
 };
-
