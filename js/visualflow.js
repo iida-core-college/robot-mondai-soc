@@ -300,7 +300,7 @@ function putHint() {
 	Blockly.Xml.domToWorkspace(xml, workspace);
 	Swal.fire({
 		title: "&#129300;",
-		text: "ヒントの命令をおいたよ",
+		text: "ヒントの命れいをおいたよ",
 	});
 }
 
