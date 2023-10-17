@@ -21,7 +21,7 @@ Map.prototype = {
 		"direction": 1,
 		"life": 65534,
 	},
-	"hint": "くり返しを使うと命令を短くできるよ",
+	"hint": "くり返しを使うと命れいを短くできるよ",
 	"state": 0,
 	"goals": 1,
 	"patterns": 1,

@@ -21,7 +21,7 @@ Map.prototype = {
 		"direction": 1,
 		"life": 65534,
 	},
-	"hint": "1だんずつ下へ行く命令をくり返してみよう",
+	"hint": "1だんずつ下へ行く命れいをくり返してみよう",
 	"state": 0,
 	"goals": 1,
 	"patterns": 1,
